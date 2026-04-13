@@ -1,2 +1,3 @@
 [submodule "client"]
+	path = client 
 	url = https://lwandledani-coder.github.io/FUTURE_FS_01/
