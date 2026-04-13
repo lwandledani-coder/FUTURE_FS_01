@@ -1,0 +1,10 @@
+backend/node_modules/
+backend/.env
+backend/backend.env
+backend/test.env
+client/node_modules/
+client/.env
+node_modules/
+.env
+.DS_Store
+*.log

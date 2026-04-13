@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .message { border: 1px solid #ddd; margin: 10px; padding: 10px; }
+        .unread { background: #f0f9ff; border-left: 4px solid #00abf0; }
+    </style>
+</head>
+<body>
+    <h1>Contact Messages</h1>
+    <div id="messages"></div>
+    
+    <script>
+        fetch('http://localhost:5000/api/contact/messages')
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    const messagesDiv = document.getElementById('messages');
+                    data.data.forEach(msg => {
+                        messagesDiv.innerHTML += `
+                            <div class="message ${msg.status === 'unread' ? 'unread' : ''}">
+                                <strong>${msg.name}</strong> (${msg.email})<br>
+                                <small>${new Date(msg.created_at).toLocaleString()}</small>
+                                <p>${msg.message}</p>
+                                <small>Status: ${msg.status}</small>
+                            </div>
+                        `;
+                    });
+                }
+            });
+    </script>
+</body>
+</html>
